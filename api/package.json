@@ -1,0 +1,29 @@
+{
+    "name": "personal-site-backend",
+    "version": "0.1.0",
+    "description": "Personal Website",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js",
+      "build": "webpack",
+      "dev": "nodemon ./server.js localhost 3080"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/salinawu/website.git"
+    },
+    "author": "Salina",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/salinawu/website/issues"
+    },
+    "homepage": "https://github.com/salinawu/website#readme",
+    "dependencies": {
+      "express": "^4.17.1",
+      "http-proxy-middleware": "^1.0.4"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.4",
+      "webpack": "^4.43.0"
+    }
+  }
