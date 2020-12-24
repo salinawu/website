@@ -9,7 +9,7 @@ const UnstyledMenu = ({ className }) => (
             <Link to="/about">About</Link>
             <Link to="/projects">Projects</Link>
             <Link to="/ceramics">Ceramics</Link>
-            <Link to="/musings">Musings</Link>
+            {/* <Link to="/musings">Musings</Link> */}
             <Link to="/contact">Contact</Link>
         </ul>
     </div>

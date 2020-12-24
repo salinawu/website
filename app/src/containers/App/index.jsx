@@ -12,6 +12,8 @@ import Projects from '../Projects';
 import Ceramics from '../Ceramics';
 import Contact from '../Contact';
 import Landing from '../Landing';
+import Musings from '../Musings';
+import PageNotFound from '../PageNotFound';
 
 const App = ({ className }) => {
     return (
@@ -25,9 +27,10 @@ const App = ({ className }) => {
                     <Route path="/about"><About /></Route>
                     <Route path="/projects"><Projects /></Route>
                     <Route path="/ceramics"><Ceramics /></Route>
-                    {/* <Route path="/musings"><Musings /></Route> */} //TODO do this later on
+                    {/* <Route path="/musings"><Musings /></Route> //TODO do this later on */}
                     <Route path="/contact"><Contact /></Route>
-                    <Route path="/"><Landing /></Route>
+                    <Route exact path="/"><Landing /></Route>
+                    <Route><PageNotFound /></Route>
                 </Switch>
             </Layout>
         </Router>

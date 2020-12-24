@@ -20,7 +20,7 @@ const Layout = styled(UnstyledLayout)`
     margin-right: 12%;
 
     .children {
-        padding-top: 60px;
+        padding-top: 124px;
         padding-left: 240px;
         padding-right: 60px;
         margin-left: 8%;

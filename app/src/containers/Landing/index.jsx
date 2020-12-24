@@ -7,22 +7,26 @@ const UnstyledLanding = ({ className }) => (
         <div className="header">👋🏼 Hi, I'm Salina!</div>
         <div className="description">
             Professional Machine Learning Infrastructure engineer (currently at 
-            <Link to="https://www.gotinder.com/jobs"> Tinder</Link>),
+            <a target="_blank" href="https://www.gotinder.com/jobs"> Tinder</a>),
             experienced fullstack web engineer,
-            amateur surfer, and ceramics enthusiast 
+            amateur surfer, and ceramics enthusiast. 
+        </div>
+        <div className="projects-link">
+            Take a look at my projects <Link to="/projects"> here</Link>, 
+            or download my resume HERE.
+            {/* TODO add resume download */}
         </div>
     </div>
 );
 
 const Landing = styled(UnstyledLanding)`
-    padding-top: 64px;
-
     .header {
         font-size: 32px;
     }
 
     .description {
         padding-top: 20px;
+        padding-bottom: 20px;
         font-size: 16px;
     }
 `;
