@@ -13,9 +13,9 @@ import Ceramics from '../Ceramics';
 import Contact from '../Contact';
 import Landing from '../Landing';
 
-const App = () => {
+const App = ({ className }) => {
     return (
-        <Router>
+        <Router className={className}>
             <Layout className="App">
                 {/* <header className="App-header">
                     something here

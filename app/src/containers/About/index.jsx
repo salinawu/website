@@ -12,4 +12,3 @@ const About = styled(UnstyledAbout)`
 `;
 
 export default About;
-  

@@ -19,10 +19,15 @@ const Menu = styled(UnstyledMenu)`
     ul {
         display: flex;
         flex-direction: column;
+        padding: 0;
+        margin-top: 24px;
     }
 
     a {
         text-decoration: none;
+        color: #000;
+        font-size: 16px;
+        padding-bottom: 8px;
     }
 `;
 
