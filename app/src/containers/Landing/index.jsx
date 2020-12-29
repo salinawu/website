@@ -9,7 +9,7 @@ const UnstyledLanding = ({ className }) => (
             Professional Machine Learning Infrastructure engineer (currently at 
             <a target="_blank" href="https://www.gotinder.com/jobs"> Tinder</a>),
             experienced fullstack web engineer,
-            amateur surfer, and ceramics enthusiast. 
+            amateur surfer, and <Link to="/ceramics">ceramics enthusiast</Link>. 
         </div>
         <div className="projects-link">
             Take a look at my projects <Link to="/projects"> here</Link>, 
