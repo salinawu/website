@@ -1,7 +1,13 @@
 @font-face {
     font-family: 'Gotu';
     src: local('Gotu'), url(./fonts/Gotu-Regular.ttf) format('truetype');
-  }
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
   
 /* 
 figure out how to set font size constants  

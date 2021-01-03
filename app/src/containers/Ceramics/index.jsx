@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
-import { fetchCeramics } from '../../services';
+import { fetchJson } from '../../services';
 
-// TODO 
-// small gap between photos
-// photo carousel
-// photo height/width aspect ratios
+// TODO figure out a better aspect ratio
+// TODO loading thing https://medium.com/frontend-digest/progressively-loading-images-in-react-107cb075417a
+// TODO zoom in on top row
+// TODO mobile carousel view 
+// TODO mobile image borders show up underneath menu
+// pagination one day 
 
 const LEFT_KEY = "ArrowLeft";
 const RIGHT_KEY = "ArrowRight";
@@ -15,7 +17,7 @@ const UnstyledCeramics = ({ className }) => {
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
 
     useEffect(() => {
-        const ceramics = fetchCeramics();
+        const ceramics = fetchJson('/ceramics');
         ceramics.then(val => {
             setCeramicsPhotos(val)
         })
@@ -43,31 +45,32 @@ const UnstyledCeramics = ({ className }) => {
         if (currentPhotoIndex < (ceramicsPhotos.length - 1)) {
             setCurrentPhotoIndex(currentPhotoIndex + 1);
         }
-    }, [currentPhotoIndex]);
+    }, [currentPhotoIndex, ceramicsPhotos.length]);
 
     const handleClickImage = useCallback(index => {
         setCurrentPhotoIndex(index);
     }, []);
     
-    const selectedPhoto = useMemo(() => ceramicsPhotos[currentPhotoIndex], [currentPhotoIndex]);
+    const selectedPhoto = useMemo(() => ceramicsPhotos[currentPhotoIndex], [ceramicsPhotos, currentPhotoIndex]);
 
     const onKeyUp = useCallback(({ key })  => {
-        if (key == LEFT_KEY) {
+        if (key === LEFT_KEY) {
             goToPreviousPhoto();
-        } else if (key == RIGHT_KEY) {
+        } else if (key === RIGHT_KEY) {
             goToNextPhoto();
         }
-    }, [currentPhotoIndex]);
+    }, [goToPreviousPhoto, goToNextPhoto]);
     
     return (
         <div className={className}>
             <div className="header">🏺 Playing with Mud</div>
-            <div className="description">
+            <div className="body">
                 <div>Ceramics is one of my favorite hobbies, and I've been practicing it for around 4 years. Here's some of my favorite work so far. </div>
                 {ceramicsPhotos && (
                     <div className="photos">
                         {ceramicsPhotos.map((imgSrc, index) => (
                             <img
+                                alt={imgSrc}
                                 key={index}
                                 src={imgSrc}
                                 width={150}
@@ -80,9 +83,9 @@ const UnstyledCeramics = ({ className }) => {
             {selectedPhoto && (
                 <>
                     <div className="photoCarouselModal">
-                        {currentPhotoIndex > 0 && <span className="leftCaret" onClick={goToPreviousPhoto}>^</span>}
-                        <img className="selectedPhoto" src={selectedPhoto} />
-                        {currentPhotoIndex < (ceramicsPhotos.length - 1) && <span className="rightCaret" onClick={goToNextPhoto}>^</span>}
+                        {currentPhotoIndex > 0 && <span className="caret left" onClick={goToPreviousPhoto}>^</span>}
+                        <img alt={selectedPhoto} className="selectedPhoto" src={selectedPhoto} />
+                        {currentPhotoIndex < (ceramicsPhotos.length - 1) && <span className="caret right" onClick={goToNextPhoto}>^</span>}
                     </div>
                     <div id="opaque" onClick={handleClickAway}></div> 
                 </>
@@ -93,22 +96,12 @@ const UnstyledCeramics = ({ className }) => {
 };
 
 const Ceramics = styled(UnstyledCeramics)`
-    .header {
-        font-size: 32px;
-    }
-
-    .description {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        font-size: 16px;
-    }
-
     .photoCarouselModal {
         display: flex;
         align-items: center;
 
         position: fixed;
-        width: 400px; // TODO figure out a better aspect ratio
+        width: 80vh;
         top: 50%;
         left: 50%;
         transform: translate(-20%, -50%);
@@ -119,15 +112,17 @@ const Ceramics = styled(UnstyledCeramics)`
             border-radius: 12px;
         }
 
-        .leftCaret {
+        .caret {
             color: white;
             font-size: 32px;
+            cursor: pointer;
+        }
+
+        .left {
             transform: rotateZ(270deg);
         }
 
-        .rightCaret {
-            color: white;
-            font-size: 32px;
+        .right {
             transform: rotateZ(90deg);
         }
     }
@@ -148,20 +143,26 @@ const Ceramics = styled(UnstyledCeramics)`
     .photos {
         padding-top: 30px;
         /* Prevent vertical gaps */
-        line-height: 0;
+        line-height: 2;
          
         -webkit-column-count: 5;
-        -webkit-column-gap:   0px;
+        -webkit-column-gap:   4px;
         -moz-column-count:    5;
-        -moz-column-gap:      0px;
+        -moz-column-gap:      8px;
         column-count:         5;
-        column-gap:           0px;  
+        column-gap:           8px;  
       }
       
     .photos img {
         /* Just in case there are inline attributes */
         width: 100% !important;
         height: auto !important;
+        transition: transform .2s;
+    }
+
+    .photos img:hover {
+        transform: scale(1.2);
+        cursor: zoom-in;
     }
 
     @media (max-width: 1200px) {
