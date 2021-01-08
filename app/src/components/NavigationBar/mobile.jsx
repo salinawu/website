@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import styled from 'styled-components';
 
-import MenuIcon from '../../icons/menuIcon';
-import CloseIcon from '../../icons/closeIcon';
+import MenuIcon from '../../assets/icons/menuIcon';
+import CloseIcon from '../../assets/icons/closeIcon';
 import Menu from '../Menu';
 
 // TODO smoother animation for padding switch for nav

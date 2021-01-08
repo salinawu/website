@@ -1,0 +1,75 @@
+[
+    {
+        "name": "Monitoring and Alerting Platform",
+        "company": "Tinder",
+        "team": "ML Infra",
+        "overview": "A project to provide monitoring, alerting, and visualization for ML model performance and feature data",
+        "highlights": [
+            "Created a model monitoring system for ML model prediction values using Prometheus and Grafana for better model performance insight",
+            "Supported adding custom metrics to models for a more robust and flexible monitoring system",
+            "Researched and brought in Deequ, an AWS data monitoring and validation library new to Tinder",
+            "Created a Spark job (Scala) running on Airflow to calculate feature data metrics using Deequ in order to monitor and assess feature data quality",
+            "Implemented the API (Java) and UI (JS) necessary for feature metrics calculation and visualization"
+        ]
+    },
+    {
+        "name": "Feature Warehouse",
+        "company": "Tinder",
+        "team": "ML Infra",
+        "overview": "A consolidated and uniform data lake for all feature data, stored in Parquet with a Hive metastore, accessible via Spark SQL",
+        "highlights": [
+            "Built an S3 data lake to store all of Tinder's ML feature data in parquet format",
+            "Support offline batch high throughput feature data access via Spark SQL for model training",
+            "Created Hive metastore for offline model training and wrote Spark job to manage and populate metastore"
+        ]
+    },
+    {
+        "name": "Feature Catalog",
+        "company": "Tinder",
+        "team": "ML Infra",
+        "overview": "A one-stop-shop metadata store for all features, comprising of a REST API service, an RDS for storage, and a UI tool for feature exploration",
+        "highlights": [
+            "Consolidate Tinder's machine learning features with a feature metastore (RDS), so that ML features can be reused and highly visible rather than created ad-hoc",
+            "Built RESTful API using Twitter finagle web API to support feature metadata addition, searching, retrieval, and more from the RDS",
+            "Feature metadata includes schema, version information, partition scheme, and location of data in the Feature Warehouse",
+            "Created an internal UI tool using React to visualize and search for ML features independently as the sole front-end engineer on the team"
+        ]
+    },
+    {
+        "name": "Model Registry",
+        "company": "Tinder",
+        "team": "ML Infra",
+        "overview": "A centralized model store for all Tinder ML models, built off MLFlow",
+        "highlights": [
+            "Provided a model registry to store all Tinder ML models in one centralized location",
+            "Cloned, enhanced, and integrated MLFlow into Tinder's ML workflow, allowing for easy model training and management",
+            "Added support for JVM/Python artifact management with the cloned MLFlow project using JFrog, and was the first person to bring in Python artifact management at Tinder",
+            "Incorporated model registry into a new internal tool for straightforward, role-based access"
+        ]
+    },
+    {
+        "name": "Tinder Progressive Web App - Feature Work",
+        "company": "Tinder",
+        "team": "Web Platform",
+        "overview": "Highly trafficked, highly performant Progressive Web App for Tinder's web platform",
+        "highlights": [
+            "Independently reduced the Critical Render Path from over 8 seconds to under 5 seconds by postponing blocking calls",
+            "Independently overhauled recommendation stack cards for an improved UX and for feature parity with mobile app experience",
+            "Implemented SMS account creation and onboarding flow for both desktop and mobile web",
+            "Independently wrote the first in-app consumables purchase flow for web, allowing purchase of products like Boosts and Superlikes",
+            "Built support for Sexual Orientations during account creation and profile editing, working on a cross-functional team of backend, iOS and Android engineers, Product Managers, and data analysts"
+        ]
+    },
+    {
+        "name": "SwipeLife",
+        "company": "Tinder",
+        "team": "Web Platform",
+        "overview": "Tinder's lifestyle website, built from scratch with GatsbyJS and Wordpress",
+        "highlights": [
+            "Worked closely with editorial and design teams to create an easy-to-use CMS for Tinder's lifestyle website",
+            "Pulled and queried data using GraphQL from Wordpress, which the editorial team used to create all content and upload all media",
+            "Used Gatsby to render a static site using Wordpress data, achieving incredibly high performance and fast speeds",
+            "Spoke at the Lesbians Who Tech conference about static site generation using Gatsby and Wordpress"
+        ]
+    }
+]
