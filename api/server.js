@@ -3,7 +3,6 @@ const path = require('path');
 global.XMLHttpRequest = require('xhr2');
 
 const firebase = require("firebase/app");
-require("firebase/firestore");
 require("firebase/storage");
 require('firebase/analytics');
 
