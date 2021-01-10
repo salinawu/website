@@ -98,7 +98,7 @@ app.get('/ceramics', (req, res) => {
         });
 
     }).catch(function(error) {
-        throw new Error('Could not get ceramics images');
+        throw new Error(`Could not get ceramics images due to error: ${error}`);
         res.status(500).json("error: could not return ceramics images");
     });
 

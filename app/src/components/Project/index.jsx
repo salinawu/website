@@ -26,14 +26,19 @@ const UnstyledProject = ({
 };
 
 const Project = styled(UnstyledProject)`
+    border-top: solid 1px #d3d3d3;
+    padding-top: 20px;
+
     li {
         font-size: 14px;
+        padding-bottom: 8px;
     }
 
     .overview {
         font-style: italic;
         font-size: 14px;
     }
+    
 `;
 
 export default Project;
