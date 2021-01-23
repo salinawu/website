@@ -3,13 +3,16 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { fetchText } from '../../services';
+const functionsRequest = "http://localhost:5001/personal-website-f24ac/us-central1/app";
 
 const UnstyledLanding = ({ className }) => {
     const [resumeUrl, setResumeUrl] = useState("");
 
     useEffect(() => {
-        const resumeUrl = fetchText('/resume');
-        resumeUrl.then(val => setResumeUrl(val));
+        fetchText('/resume')
+            .then(url => {
+                setResumeUrl(url);
+            });
     }, []);
 
     return (

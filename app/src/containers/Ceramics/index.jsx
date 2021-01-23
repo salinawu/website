@@ -17,10 +17,10 @@ const UnstyledCeramics = ({ className }) => {
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
 
     useEffect(() => {
-        const ceramics = fetchJson('/ceramics');
-        ceramics.then(val => {
-            setCeramicsPhotos(val)
-        })
+        fetchJson('/ceramics')
+            .then(photos => {
+                setCeramicsPhotos(photos)
+            })
     }, []);
 
     useEffect(() => {

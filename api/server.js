@@ -106,7 +106,8 @@ app.get('/ceramics', (req, res) => {
 });
 
 app.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, '../app/build/index.html'));
+    res.sendFile(resolve(__dirname, '..', 'dist', 'index.html'));
+    // res.sendFile(path.join(__dirname, '../app/build/index.html'));
 });
 
 app.listen(port, () => {

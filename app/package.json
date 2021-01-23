@@ -1,5 +1,5 @@
 {
-  "name": "personal-site-backend",
+  "name": "personal-site",
   "version": "0.1.0",
   "description": "Personal Website",
   "private": true,
@@ -13,7 +13,7 @@
     "react-dom": "^17.0.1",
     "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "2.1.8",
     "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"
   },
@@ -41,5 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://127.0.0.1:3080"
+  "proxy": "http://127.0.0.1:5001"
 }

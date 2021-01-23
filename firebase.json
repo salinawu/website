@@ -1,4 +1,4 @@
-{ 
+{
   "hosting": {
     "public": "app/build",
     "ignore": [
@@ -8,12 +8,18 @@
     ],
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/**",
+        "function": "app"
       }
     ]
   },
   "storage": {
     "rules": "storage.rules"
+  },
+  "functions": {
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\" run lint"
+    ],
+    "source": "functions"
   }
 }

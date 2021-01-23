@@ -6,8 +6,7 @@ const UnstyledPageNotFound = ({ className }) => (
     <div className={className}>
         <div className="header">😬 Oops!</div>
         <div className="body">
-            Sorry, seems like that page doesn't exist. Here's the way
-             back <Link to='/'>home</Link>...
+            Sorry, seems like that page doesn't exist. Here's the way back <Link to='/'>home</Link>...
         </div>
     </div>
 );
