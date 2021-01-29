@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const express = require("express");
 const path = require("path");
-const cors = require('cors');
+const cors = require("cors");
 
 global.XMLHttpRequest = require("xhr2");
 
@@ -10,12 +10,6 @@ require("firebase/storage");
 require("firebase/analytics");
 
 const admin = require("firebase-admin");
-const allowedDomains = [
-    "http://salinawu.com",
-    "http://localhost:3080",
-    "http://localhost:5000",
-    "https://us-central1-personal-website-f24ac.cloudfunctions.net/",
-];
 
 admin.initializeApp(functions.config().firebase);
 
@@ -73,37 +67,14 @@ const getImages = (img, res) => {
 
 const app = express();
 
-console.log("starting app!!! ");
-
-// app.use(cors({
-//     origin: function(origin, callback) {
-//         // bypass the requests with no origin
-//         // (like curl requests, mobile apps, etc )
-//         if (!origin) return callback(null, true);
-
-//         if (allowedDomains.indexOf(origin) === -1) {
-//             const msg = `This site ${origin} does not have an access. 
-//                 Only specific domains are allowed to access it.`;
-//             return callback(new Error(msg), false);
-//         }
-//         return callback(null, true);
-//     },
-// }));
-
-app.use(cors({ origin: "*" }));
-
-console.log("here");
+//TODO fix this
+app.use(cors({origin: "*"}));
 
 app.use(express.static(path.join(__dirname, "../app/build")));
 
-console.log("there");
-
 app.get("/resume", (req, res) => {
-    console.log("I AM HERE first");
     const resumeRef = storage.ref().child("resume/salinawu_resume.pdf");
     res.setHeader("Access-Control-Allow-Origin", "*");
-    console.log("I AM HERE");
-    console.log("res._headers >>>>>>>" + JSON.stringify(res._headers));
 
     resumeRef.getDownloadURL()
         .then(function(url) {
@@ -114,7 +85,7 @@ app.get("/resume", (req, res) => {
         );
 });
 
-app.get("/ceramics", cors({ origin: true }), (req, res) => {
+app.get("/ceramics", cors({origin: true}), (req, res) => {
     // Create a reference under which you want to list
     const listRef = storage.ref().child("ceramics");
     res.setHeader("Access-Control-Allow-Origin", "*");
