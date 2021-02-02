@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
-import { fetchJson } from '../../services';
+import { fetchCeramics } from '../../services';
+import Image from '../../components/Image';
 
 // TODO figure out a better aspect ratio
 // TODO loading thing https://medium.com/frontend-digest/progressively-loading-images-in-react-107cb075417a
@@ -17,7 +18,7 @@ const UnstyledCeramics = ({ className }) => {
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
 
     useEffect(() => {
-        fetchJson('/ceramics')
+        fetchCeramics()
             .then(photos => {
                 setCeramicsPhotos(photos)
             })
@@ -61,6 +62,16 @@ const UnstyledCeramics = ({ className }) => {
         }
     }, [goToPreviousPhoto, goToNextPhoto]);
     
+
+//     <Image
+//     alt={imgSrc}
+//     key={index}
+//     src={imgSrc}
+//     width={150}
+//     onClick={() => handleClickImage(index)}
+// />
+
+
     return (
         <div className={className}>
             <div className="header">🏺 Playing with Mud</div>
@@ -69,11 +80,10 @@ const UnstyledCeramics = ({ className }) => {
                 {ceramicsPhotos && (
                     <div className="photos">
                         {ceramicsPhotos.map((imgSrc, index) => (
-                            <img
-                                alt={imgSrc}
+                            <Image
                                 key={index}
                                 src={imgSrc}
-                                width={150}
+                                overlaySrc={imgSrc}
                                 onClick={() => handleClickImage(index)}
                             />
                         ))}
@@ -94,6 +104,14 @@ const UnstyledCeramics = ({ className }) => {
         </div>
     );
 };
+
+// .photos img {
+//     /* Just in case there are inline attributes */
+//     width: 100% !important;
+//     height: auto !important;
+//     transition: transform .2s;
+// }
+
 
 const Ceramics = styled(UnstyledCeramics)`
     .photoCarouselModal {
@@ -153,13 +171,6 @@ const Ceramics = styled(UnstyledCeramics)`
         column-gap:           8px;  
       }
       
-    .photos img {
-        /* Just in case there are inline attributes */
-        width: 100% !important;
-        height: auto !important;
-        transition: transform .2s;
-    }
-
     .photos img:hover {
         transform: scale(1.2);
         cursor: zoom-in;

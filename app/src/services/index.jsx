@@ -1,11 +1,11 @@
 // TODO catch errors
 
-export async function fetchJson(path) {
-    const response = await fetch(path);
+export async function fetchCeramics() {
+    const response = await fetch('/api/ceramics');
     return await response.json();
 }
 
-export async function fetchText(path) {
-    const response = await fetch(path);
+export async function fetchResume() {
+    const response = await fetch('/api/resume');
     return await response.text();
 }

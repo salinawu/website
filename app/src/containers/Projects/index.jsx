@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { fetchText } from '../../services';
+import { fetchResume } from '../../services';
 import Project from '../../components/Project';
 import projectData from '../../assets/data/projects.json';
 
@@ -11,8 +11,10 @@ const UnstyledProjects = ({ className }) => {
     const [resumeUrl, setResumeUrl] = useState("");
 
     useEffect(() => {
-        const resumeUrl = fetchText('/resume');
-        resumeUrl.then(val => setResumeUrl(val));
+        fetchResume()
+            .then(url => {
+                setResumeUrl(url);
+            });
     }, []);
 
     return (

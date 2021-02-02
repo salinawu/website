@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { fetchText } from '../../services';
+import { fetchResume } from '../../services';
 const functionsRequest = "http://localhost:5001/personal-website-f24ac/us-central1/app";
 
 const UnstyledLanding = ({ className }) => {
     const [resumeUrl, setResumeUrl] = useState("");
 
     useEffect(() => {
-        fetchText('/resume')
+        fetchResume()
             .then(url => {
                 setResumeUrl(url);
             });
