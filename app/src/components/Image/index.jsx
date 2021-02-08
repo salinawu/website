@@ -9,7 +9,7 @@ const overlayStyles = {
     backgroundColor: "gray"
 };
 
-const UnstyledImage = ({ onClick, overlaySrc, src}) => {
+const UnstyledImage = ({ className, onClick, overlaySrc, src}) => {
     const [highResImageLoaded, setHighResImageLoaded] = useState(false);
 
     const setHighResImageLoadedTrue = useCallback(() => setHighResImageLoaded(true), [src]);
@@ -19,7 +19,7 @@ const UnstyledImage = ({ onClick, overlaySrc, src}) => {
     console.log("image loaded? ", highResImageLoaded);
 
 	return (
-        <span onClick={onClick}>
+        <span className={className} onClick={onClick}>
             <img
                 onLoad={setHighResImageLoadedTrue}
                 ref={imageRef}

@@ -23,10 +23,6 @@ const UnstyledApp = ({ className }) => {
     return (
         <Router className={className}>
             <Layout className="App" isMobile={isMobile}>
-                {/* <header className="App-header">
-                    something here
-                    <button onClick={() => testGet()}>click me</button>
-                </header> */}
                 <Switch>
                     <Route path="/about"><About /></Route>
                     <Route path="/projects"><Projects /></Route>

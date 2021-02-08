@@ -3,13 +3,18 @@ import styled from 'styled-components';
 
 import NavigationBar from '../../components/NavigationBar';
 import MobileNavigationBar from '../../components/NavigationBar/mobile';
+import Footer from '../../components/Footer';
 
 // TODO add footer 
 const UnstyledLayout = ({ className, children, isMobile }) => {
     return (
         <div className={className}>
-            {isMobile ? <MobileNavigationBar /> : <NavigationBar />}
-            <div className="children">{children}</div>
+            <div className="body">
+                {isMobile ? <MobileNavigationBar /> : <NavigationBar />}
+                <div className="children">{children}</div>
+            </div>
+            
+            <Footer />
         </div>
 
     );
@@ -17,7 +22,9 @@ const UnstyledLayout = ({ className, children, isMobile }) => {
 
 const Layout = styled(UnstyledLayout)`
     display: flex;
-    flex-direction: ${({ isMobile }) => isMobile ? 'column' : 'row'};
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
     font-family: Gotu;
 
 
@@ -56,8 +63,9 @@ const Layout = styled(UnstyledLayout)`
     }
 
     .body {
+        flex-direction: ${({ isMobile }) => isMobile ? 'column' : 'row'};
         padding-top: 20px;
-        padding-bottom: 20px;
+        padding-bottom: 60px;
         font-size: 16px;
 
         display: flex;
