@@ -16,8 +16,6 @@ const UnstyledImage = ({ className, onClick, overlaySrc, src}) => {
     
     const imageRef = useRef(null);
 
-    console.log("image loaded? ", highResImageLoaded);
-
 	return (
         <span className={className} onClick={onClick}>
             <img

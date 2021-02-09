@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
 import NavigationBar from '../../components/NavigationBar';
 import MobileNavigationBar from '../../components/NavigationBar/mobile';
 import Footer from '../../components/Footer';
 
-// TODO add footer 
 const UnstyledLayout = ({ className, children, isMobile }) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleToggleMenu = useCallback(() => {
+        setIsMenuOpen(!isMenuOpen);
+    }, [isMenuOpen]);
+
     return (
         <div className={className}>
             <div className="body">
-                {isMobile ? <MobileNavigationBar /> : <NavigationBar />}
+                {isMobile ? (
+                    <MobileNavigationBar isMenuOpen={isMenuOpen} onToggleMenu={handleToggleMenu} />
+                 ) : <NavigationBar />}
                 <div className="children">{children}</div>
             </div>
-            
-            <Footer />
+            <Footer isMobile={isMobile}/>
         </div>
 
     );
@@ -64,8 +70,7 @@ const Layout = styled(UnstyledLayout)`
 
     .body {
         flex-direction: ${({ isMobile }) => isMobile ? 'column' : 'row'};
-        padding-top: 20px;
-        padding-bottom: 60px;
+        padding-bottom: ${({ isMobile }) => isMobile ? '60px' : '100px'};
         font-size: 16px;
 
         display: flex;

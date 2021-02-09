@@ -9,14 +9,9 @@ import Menu from '../Menu';
 // TODO smoother animation for padding switch for nav
 // TODO prevent scrolling menu https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
 
-const UnstyledMobileNavigationBar = ({ className, isMobile }) => {
+const UnstyledMobileNavigationBar = ({ className, isMenuOpen, isMobile, onToggleMenu }) => {
     const location = useLocation();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [hasScrolled, setHasScrolled] = useState(false);
-
-    const toggleMenuOpen = useCallback(() => {
-        setIsMenuOpen(!isMenuOpen);
-    }, [isMenuOpen]);
 
     const onScroll = useCallback(() => {
         const scrollPosition = window.scrollY;
@@ -38,18 +33,17 @@ const UnstyledMobileNavigationBar = ({ className, isMobile }) => {
         }
     }, [onScroll]);
 
-
     return (
         <div className={className}>
-            <div className={`nav ${hasScrolled ? 'scrolled' : ''}`}>
-                <div className="icon" onClick={toggleMenuOpen}>{ isMenuOpen ? <CloseIcon /> : <MenuIcon />}</div>
+            <div className={`nav ${hasScrolled ? 'scrolled' : ''} `}>
+                <span className="icon" onClick={onToggleMenu}>{ isMenuOpen ? <CloseIcon /> : <MenuIcon />}</span>
                 <Link to='/' className="name-title">salina wu</Link>
             </div>
 
             {isMenuOpen && (
                 <Menu
                     isMobile
-                    handleChangeRoute={toggleMenuOpen}
+                    handleChangeRoute={onToggleMenu}
                     route={location.pathname}
                 />
             )}
@@ -59,18 +53,16 @@ const UnstyledMobileNavigationBar = ({ className, isMobile }) => {
 
 const MobileNavigationBar = styled(UnstyledMobileNavigationBar)`
     position: fixed;
-    height: 100%;
     width: 100%;
 
+    height: ${({ isMenuOpen }) => isMenuOpen ? '100%' : 'auto'};
+
     .nav {
-        padding-top: 20px;
-        padding-left: 8%;
-        padding-right: 8%;
+        padding: 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         background-color: white;
-
     }
 
     .icon {
@@ -85,8 +77,7 @@ const MobileNavigationBar = styled(UnstyledMobileNavigationBar)`
     }
 
     .scrolled {
-        border-bottom: solid 1px #D3D3D3; 
-        padding-top: 8px;
+        border-bottom: solid 1px #D3D3D3;
     }
 
 `;

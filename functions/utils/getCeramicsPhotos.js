@@ -3,7 +3,6 @@ require("firebase/storage");
 
 const getImages = (img, res) => {
     return img.items.map(function(itemRef) {
-        console.log("itemRef::: ", itemRef);
         return itemRef.getDownloadURL()
             .catch((error) => (
                 handleFirebaseStorageError(error, itemRef.fullPath, res)

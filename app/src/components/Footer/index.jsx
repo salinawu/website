@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
 
-const UnstyledFooter = ({ className }) => {
+const UnstyledFooter = ({ className, isMobile }) => {
     const currentYear = useMemo(() => new Date().getFullYear(), []);
 
 	return (
@@ -27,13 +27,15 @@ const Footer = styled(UnstyledFooter)`
     border-top: solid 1px #d3d3d3;
 
     .social {
+        display: flex;
         padding-left: 24px;
+        flex-direction: ${({ isMobile }) => isMobile ? 'column' : 'row'};
     }
 
     .copyright {
         padding-right: 24px;
     }
-    
+
     a {
         padding-right: 8px;
     }
